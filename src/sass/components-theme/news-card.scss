@@ -1,0 +1,55 @@
+.zd-card {
+  background-color: #fff;
+}
+
+.zd-card__header {
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  width: 100%;
+}
+
+.zd-card__tip {
+  display: inline-block;
+  margin: 6px 10px 0 0;
+  width: 8px;
+  height: 44px;
+  background-color: $theme-color;
+}
+
+.zd-card__title {
+  float: left;
+  color: $mainTextColor;
+}
+
+.zd-card__title--normal {
+  font-size: $font-size-title;
+  font-weight: 400;
+}
+
+.zd-card__title--bold {
+  font-size: $font-size-title-lg;
+  font-weight: bold;
+}
+
+.zd_card__more {
+  margin-left: auto;
+  margin-bottom: auto;
+  float: right;
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
+  color: #999;
+}
+
+.zd_card__more--font {
+  font-size: $font-size-title;
+  a {
+    margin: 0 8px;
+    color: $mainTextColor;
+  }
+}
+
+.zd-card__body {
+  margin-top: 20px;
+}

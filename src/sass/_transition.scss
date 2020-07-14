@@ -1,0 +1,7 @@
+//globl transition css
+
+// 覆盖nprogress进度条颜色
+/* Make clicks pass-through */
+#nprogress .bar {
+  background: $theme-color !important;
+}

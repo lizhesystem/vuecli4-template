@@ -1,0 +1,12 @@
+﻿@charset "UTF-8";
+
+// 导入默认变量
+@import '_variablesCustom.scss';
+// 导入函数
+@import '_function.scss';
+// 导入混合宏
+@import '_mixins.scss';
+// 导入占位样式
+@import '_placeholders.scss';
+
+@import '../layout';

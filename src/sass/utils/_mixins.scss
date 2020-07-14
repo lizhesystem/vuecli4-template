@@ -1,0 +1,441 @@
+@charset "UTF-8";
+// 选择文本样式
+@mixin selection($bgColor: #e74c3c, $color: #ecf0f1) {
+  ::selection {
+    background-color: $bgColor;
+    color: $color;
+  }
+
+  ::-moz-selection {
+    background-color: $bgColor;
+    color: $color;
+  }
+
+  ::-webkit-selection {
+    background-color: $bgColor;
+    color: $color;
+  }
+}
+
+// 设置retina一像素，父元素设置relative
+@mixin setTopLine($c: #c7c7c7) {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid $c;
+  color: $c;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+
+@mixin setBottomLine($c: #c7c7c7) {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid $c;
+  color: $c;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+
+@mixin setLeftLine($c: #c7c7c7) {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  border-left: 1px solid $c;
+  color: $c;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+@mixin setRightLine($c: #c7c7c7) {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  border-right: 1px solid $c;
+  color: $c;
+  transform-origin: 100% 0;
+  transform: scaleX(0.5);
+}
+
+// 浮动
+@mixin float($side: left) {
+  float: unquote($side);
+
+  @if $lte7 {
+    _display: inline;
+  }
+}
+
+// 表单禁用样式
+@mixin disabled($bgColor: #e6e6e6, $textColor: #ababab) {
+  background-color: $bgColor !important;
+  color: $textColor !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+// 设置过渡效果
+@mixin transtion($transition-property: all) {
+  transition: $transition-property 0.3s ease-in-out;
+}
+
+// 设置透明度
+@mixin opacity($opacity: 50) {
+  opacity: $opacity / 100;
+
+  @if $filter {
+    filter: alpha(opacity=$opacity);
+  }
+}
+
+// 设置黑色半透明背景
+@mixin bgAlpha($bgcolor: rgba(0, 0, 0, 0.5)) {
+  background-color: $bgcolor;
+
+  @if $filter {
+    filter: progid:dximagetransform.microsoft.gradient(enabled='true', startColorstr='#{ie-hex-str($bgcolor)}', endColorstr='#{ie-hex-str($bgcolor)}');
+  } @else {
+    background-color: #333;
+  }
+}
+
+// 文本截取(单行、多行,截取宽度)
+@mixin ellipsis($line: 1, $substract: 0) {
+  width: 100% - $substract;
+  overflow: hidden;
+
+  @if $line==1 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// stickyFooter
+@mixin stickyFooter(
+  $footerH,
+  $wp: unquote('.c-Sticky'),
+  $content: unquote('.c-Sticky-bd'),
+  $footer: unquote('.c-Sticky-ft')
+) {
+  html,
+  body {
+    height: 100%;
+  }
+  #{$wp} {
+    min-height: 100%;
+    position: relative;
+
+    @if $lte7 {
+      /*IE6不识别min-height*/
+      height: auto !important;
+      height: 100%;
+    }
+  }
+  #{$content} {
+    overflow: auto;
+    padding-bottom: $footerH;
+  }
+  #{$footer} {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+//设置inline-block
+@mixin inline-block($alignment: middle) {
+  display: inline-block;
+
+  @if $alignment and $alignment !=none {
+    vertical-align: $alignment;
+  }
+
+  @if $lte7 {
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+  }
+}
+
+// 设置双飞翼布局
+@mixin DoubleWing($leftWidth, $rightWidth) {
+  & {
+    @include clearfix();
+  }
+
+  &-main {
+    width: 100%;
+
+    @include float();
+  }
+
+  &-mainInner {
+    margin-left: $leftWidth + px;
+    margin-right: $rightWidth + px;
+  }
+
+  &-left {
+    width: $leftWidth + px;
+    margin-left: -100%;
+
+    @include float();
+  }
+
+  &-right {
+    width: $rightWidth + px;
+    margin-left: -$rightWidth + px;
+
+    @include float();
+  }
+}
+
+// 针对ie8设置样式
+@mixin ie8() {
+  .ie8 & {
+    @content;
+  }
+}
+
+// 针对ie9设置样式
+@mixin ie9() {
+  .ie9 & {
+    @content;
+  }
+}
+
+// 波点背景(通过径向渐变生成，IE10+)
+@mixin bgPolka($size, $dot, $base, $accent) {
+  // 单独一个波点图所占空间，波点半径，波点图背景色，波点的颜色
+  background-color: $base;
+  background-image: radial-gradient($accent $dot, transparent 0), radial-gradient($accent $dot, transparent 0);
+  background-size: $size $size;
+  background-position: 0 0, $size/2 $size/2;
+}
+
+// 棋盘背景(通过线性渐变生成，IE9+)
+@mixin bgCheckboard($size, $base, $accent: rgba(0, 0, 0, 0.25)) {
+  // 单个棋格子大小，棋盘背景色，棋格颜色
+  background-color: $base;
+  background-image: linear-gradient(45deg, $accent 25%, transparent 0, transparent 75%, $accent 0),
+    linear-gradient(45deg, $accent 25%, transparent 0, transparent 75%, $accent 0);
+  background-size: 2 * $size 2 * $size;
+  background-position: 0 0, $size $size;
+}
+
+// 图片保持宽高比
+@mixin aspectRatio($width: 16, $height: 9) {
+  // 默认16:9
+  @at-root #{&}::before {
+    content: '';
+    float: left; // 元素需要浮动，不然后面元素需要使用绝对定位
+    height: 0; // 本身高度必须置0
+    padding-top: percentage($height/$width); // 使用padding-top撑起高度
+  }
+
+  @at-root #{&}::after {
+    // 清除浮动
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// 3d文字
+@mixin text-3d($color: white, $depth: 5) {
+  // 阴影颜色，深度
+  $shadows: ();
+  $shadow-color: $color;
+
+  color: $color;
+  text-shadow: append($shadows, 0 ($depth * 1px) 10px black, comma);
+
+  @for $i from 1 through $depth {
+    $shadow-color: darken($shadow-color, 10%);
+    $shadows: append($shadows, 0 ($i * 1px) $shadow-color, comma);
+  }
+}
+
+// 根据元素数量选择元素
+@mixin n-items($n) {
+  @if $n==1 {
+    &:only-child {
+      @content;
+    }
+  } @else {
+    &:first-child:nth-last-child(#{$n}),
+    &:first-child:nth-last-child(#{$n}) ~ & {
+      @content;
+    }
+  }
+}
+
+// 1px边框
+// $directionMaps: 是个list类型可以传入多个方向, 也就是可以生成多个防线边框, 默认值为bottom, 你可以根据需要传入(top, left, bottom, right) 4个方向;
+// $color: 边框的颜色, 默认#ccc;
+// $radius: 圆角半径, 默认0;
+// $position是一个高级设置, 一般都不需要改动, 由于细边框的实现使用了css的伪类, 所以为了规避可能出现的样式冲突, 我们可以自己指定使用:after还是:before, 默认after;
+@mixin thinBorder(
+  $directionMaps: bottom,
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  // 是否只有一个方向
+  $isOnlyOneDir: string==type-of($directionMaps);
+
+  @if ($isOnlyOneDir) {
+    $directionMaps: ($directionMaps);
+  }
+
+  @each $directionMap in $directionMaps {
+    border-#{$directionMap}: 1px solid $color;
+  }
+
+  // 判断圆角是list还是number
+  @if (list==type-of($radius)) {
+    border-radius: nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
+  } @else {
+    border-radius: $radius;
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    & {
+      position: relative;
+
+      // 删除1像素密度比下的边框
+      @each $directionMap in $directionMaps {
+        border-#{$directionMap}: none;
+      }
+    }
+
+    &:#{$position} {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      box-sizing: border-box;
+      padding: 1px;
+      transform-origin: 0 0;
+      pointer-events: none;
+      border: 0 solid $color;
+
+      @each $directionMap in $directionMaps {
+        border-#{$directionMap}-width: 1px;
+      }
+
+      // 判断圆角是list还是number
+      @if (list==type-of($radius)) {
+        border-radius: nth($radius, 1) * 2 2 nth($radius, 2) * 2 nth($radius, 3) * 2 nth($radius, 4) * 2;
+      } @else {
+        border-radius: $radius * 2;
+      }
+    }
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+    &:#{$position} {
+      width: 300%;
+      height: 300%;
+      transform: scale(0.3333);
+      // 判断圆角是list还是number
+      @if (list==type-of($radius)) {
+        border-radius: nth($radius, 1) * 3 nth($radius, 2) * 3 nth($radius, 3) * 3 nth($radius, 4) * 3;
+      } @else {
+        border-radius: $radius * 3;
+      }
+    }
+  }
+}
+
+// flex布局改变。
+@mixin flex($direction: column, $inline: block) {
+  display: if($inline == block, flex, inline-flex); // 如果是block -> 为flex(默认的)否则为inline-flex
+  flex-direction: $direction; // 默认竖向
+  flex-wrap: wrap; // 换行
+}
+
+//列表的样式
+@mixin list-dir($direction: column) {
+  @include flex($direction);
+}
+
+// 面板的样式
+@mixin panel($width: 300px, $bgc-color: #fff, $padding: 0, $fontSize: 14px, $color: #000) {
+  background: $bgc-color;
+  padding: $padding;
+  margin-left: auto;
+  width: $width;
+  color: $color;
+  > h4 {
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 7px;
+    border-bottom: 1px solid #e5e5e5;
+
+    > span {
+      font-size: 14px;
+      float: right;
+      padding-right: 15px;
+      color: #999;
+      cursor: pointer;
+    }
+  }
+}
+
+// 内容面板公共样式
+@mixin contentStyle($width: 1040px) {
+  width: $width;
+  padding-top: 2px;
+  box-sizing: border-box;
+  > img {
+    height: 80px;
+    width: 100%;
+  }
+  .title {
+    height: 50px;
+    background: #fff;
+    margin: 18px 0 18px;
+    display: flex;
+    cursor: pointer;
+
+    > p {
+      font-size: 16px;
+      font-weight: 500;
+      width: 82px;
+      line-height: 50px;
+      position: relative;
+      text-align: center;
+      margin-left: 20px;
+      &:nth-of-type(2) {
+        margin-left: 0;
+      }
+    }
+  }
+}

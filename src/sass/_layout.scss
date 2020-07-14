@@ -1,0 +1,28 @@
+@charset "UTF-8";
+// 业务代码里共用的样式
+
+// 公共横屏广告
+.container-midadv {
+  padding: 0 40px;
+  margin: auto;
+
+  .ad4 {
+    width: 100%;
+    margin: 10px auto;
+
+    > img {
+      width: 100%;
+    }
+  }
+}
+
+// 横屏mixin
+@mixin container($padding: 40, $direction: row, $margin-bootom: 30, $wrap: wrap) {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: $direction; // 默认横向
+  flex-wrap: $wrap; // 超出换行 or nowrap
+  padding: 0 $padding + px;
+  margin-bottom: $margin-bootom + px;
+  min-width: $layout-content-min-width;
+}

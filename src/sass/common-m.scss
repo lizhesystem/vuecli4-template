@@ -1,0 +1,21 @@
+@charset "UTF-8";
+// 导入自定义变量
+@import './utils/_variablesCustom.scss';
+
+// 导入工具包包含默认变量、_mixin、_funciton、_placeholder、_mediaQuery
+@import './utils/_utils.scss';
+
+// 导入normalize
+@import 'base/_reset.scss';
+
+// 导入自定义element loading样式
+@import 'element-ui/element-ui';
+
+// 自定义主题
+@import 'element-ui/element-variables';
+
+// 导入动画
+@import '_transition';
+
+// 导入一些布局样式
+@import '_layout';

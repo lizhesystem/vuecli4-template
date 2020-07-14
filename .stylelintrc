@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-order"
+  ],
+  "rules": {
+    "order/properties-order": [],
+    "no-empty-source": null,
+    "comment-whitespace-inside": "never",
+    "at-rule-no-unknown": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["v-deep"]
+      }
+    ],
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ]
+  }
+}

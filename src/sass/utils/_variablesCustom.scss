@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+// ---------------------------------------------
+// 开关变量设置
+// ---------------------------------------------
+$lte7: false; //是否兼容ie6-7
+$filter: false; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+$printStyleSwitch: false; //是否开启打印样式
+// ---------------------------------------------
+// font相关
+// ---------------------------------------------
+// html基础字体样式
+$baseFontPC: arial, \5b8b\4f53, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; //PC端,$pageType为PC
+$baseFontM: -apple-system, blinkmacsystemfont, 'PingFang SC', 'Helvetica Neue', stheiti, 'Microsoft Yahei', tahoma,
+  simsun, sans-serif; //$pageType为M
+// 常用字体
+$fontSong: \5b8b\4f53; //宋体
+$fontYaHei: 'Microsoft YaHei'; //微软雅黑
+
+$font-size: 14px;
+$font-size-medium-sm: 13px;
+$font-size-lg: 16px;
+$font-size-sm: 12px;
+$font-size-xs: 10px;
+$font-size-medium: 15px;
+$font-size-title: 28px;
+$font-size-title-lg: 36px;
+// ---------------------------------------------
+// 颜色
+// ---------------------------------------------
+// 页面主要色调
+$theme-color: #25cb5b;
+$theme-warning-color: #ff9f00;
+$mainTone: #3da4fe;
+$subTone: #fe6e00;
+
+// 文字颜色
+$mainTextColor: #333;
+$subTextColor: #ccc;
+
+// 边框颜色
+$baseBorderColor: #c7c7c7;
+$border: 1px solid #3f3f3f;
+
+// 按钮文字颜色
+$mainButtonColor: #fff;
+// 辅助颜色
+$a-hover-color: #dc4741;
+$dangerColor: #a94442;
+$warnningColor: #8a6d3b;
+
+// ---------------------------------------------
+// 尺寸\布局
+// ---------------------------------------------
+// Layout
+$layout-content-min-width: 760px;
+// content
+$center-content-max-width: 1000px;
+// header
+$header-height: 50px;
+
+// z-index
