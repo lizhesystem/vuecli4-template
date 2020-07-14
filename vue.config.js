@@ -53,8 +53,6 @@ const setCDN = config => {
     })
 }
 
-// 配置静态资源
-
 // 生成环境删除console、debugger
 const dropConsole = config => {
   if (process.env.NODE_ENV !== 'production') return
