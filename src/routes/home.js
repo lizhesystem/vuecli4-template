@@ -39,7 +39,7 @@ export default [
         meta: {
           title: '详情'
         }
-}
+      }
     ]
   }
 ]

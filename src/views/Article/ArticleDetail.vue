@@ -93,6 +93,11 @@
     data() {
       return {}
     }
+    // 进入路由前获取数据
+    //  beforeRouteEnter(to, from, next) {
+    //    console.log('get data')
+    //    next()
+    //  }
   }
 </script>
 
@@ -102,27 +107,29 @@
     margin: 20px 0;
   }
 
-  .container-article__detail{
+  .container-article__detail {
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
   }
 
   /*左侧文章详情*/
-  .container-article__detail__title{
+  .container-article__detail__title {
     width: calc(100% - 620px);
-    .title{
+
+    .title {
       margin: 20px auto;
       color: #333333;
       font-size: 36px;
       font-weight: bold;
       height: 50px;
-      h1{
+
+      h1 {
         font-size: 100%;
         font-weight: normal;
       }
 
-      .post_time_source{
+      .post_time_source {
         line-height: 40px;
         font-size: 14px;
         font-weight: 400;
@@ -130,11 +137,13 @@
       }
     }
   }
-  .container-article__content{
+
+  .container-article__content {
     padding: 20px;
     line-height: 30px;
     font-size: 18px;
-    p{
+
+    p {
       font-size: 18px;
       line-height: 40px;
       text-indent: 2em;
@@ -142,15 +151,17 @@
   }
 
   /*右侧新闻*/
-  .container-article__detail__right{
+  .container-article__detail__right {
     width: 580px;
   }
-  .news-right__list{
-    .pic{
+
+  .news-right__list {
+    .pic {
       width: 580px;
       height: 355px;
     }
-    li{
+
+    li {
       display: block;
       width: 520px;
       height: 60px;
@@ -159,7 +170,8 @@
       line-height: 60px;
       text-overflow: ellipsis;
       overflow: hidden;
-      &:before{
+
+      &:before {
         content: "";
         width: 6px;
         height: 6px;
@@ -168,10 +180,12 @@
         margin: 30px 20px 0 0;
         border-radius: 6px;
       }
-      a:hover{
+
+      a:hover {
         color: $a-hover-color;
       }
     }
   }
+
   /*右侧新闻列表*/
 </style>

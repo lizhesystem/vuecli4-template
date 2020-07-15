@@ -27,6 +27,7 @@ export function routerBeforeEachFn(to, from, next) {
   // 全屏loading,根据defaultSettings里的配置是否启用
   routerLoading && loadingObj.loadingShow()
   const meta = to.meta || {}
+  // TODO: 处理下，这个东西，暂时没有权限判断
   if (!meta.auth) {
     next()
   } else {
