@@ -23,8 +23,6 @@ module.exports = {
    *  如 'semi': ['error', 'never'], never就是额外的配置项
    */
   rules: {
-    // 允许注释
-    "starred-block": 0,
     // 在类成员之间出现空行
     'lines-between-class-members': 'warn',
     // 强制驼峰
