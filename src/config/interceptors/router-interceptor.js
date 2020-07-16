@@ -7,8 +7,6 @@ import NProgress from 'nprogress'
 import loadingObj from '@/plugins/el-loading'
 import { routerLoading } from '@/config/defaultSettings'
 
-// import { routerLoading } from '@/config/defaultSettings'
-
 NProgress.configure({
   showSpinner: false
 })
@@ -21,16 +19,9 @@ export function routerBeforeEachFn(to, from, next) {
     next(to.path + '?sec')
     window.location.reload()
   } else {
-    next()
-  }
-  NProgress.start()
-  // 全屏loading,根据defaultSettings里的配置是否启用
-  routerLoading && loadingObj.loadingShow()
-  const meta = to.meta || {}
-  // TODO: 处理下，这个东西，暂时没有权限判断
-  if (!meta.auth) {
-    next()
-  } else {
+    NProgress.start()
+    // 全屏loading,根据defaultSettings里的配置是否启用
+    routerLoading && loadingObj.loadingShow()
     if (getToken()) {
       if (to.path === loginRoute) {
         next({
