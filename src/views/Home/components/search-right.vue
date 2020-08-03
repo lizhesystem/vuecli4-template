@@ -9,7 +9,7 @@
     </div>
     <div class="con">
       <div class="search-quanyi__area">
-        <el-select v-model="value" placeholder="地区" style="width:120px;">
+        <el-select v-model="value" placeholder="地区" style="width: 120px;">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -17,7 +17,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select v-model="value" placeholder="类型" style="width:120px;">
+        <el-select v-model="value" placeholder="类型" style="width: 120px;">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -25,7 +25,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select v-model="value" placeholder="种类" style="width:120px;">
+        <el-select v-model="value" placeholder="种类" style="width: 120px;">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -33,7 +33,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select v-model="value" placeholder="品种" style="width:120px;">
+        <el-select v-model="value" placeholder="品种" style="width: 120px;">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -41,7 +41,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select v-model="value" placeholder="面积" style="width:120px;">
+        <el-select v-model="value" placeholder="面积" style="width: 120px;">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -132,9 +132,9 @@
     width: 930px;
 
     .title {
-      font-size: $font-size-title-lg;
-      font-weight: bold;
       height: 50px;
+      font-weight: bold;
+      font-size: $font-size-title-lg;
     }
 
     .con {
@@ -145,48 +145,28 @@
 
     .search-quanyi__quanyi-all {
       display: flex;
-      margin: 40px auto 0 auto;
       height: calc(406px - 80px);
+      margin: 40px auto 0 auto;
 
       .map {
-        margin-right: 50px;
         display: inline-block;
+        margin-right: 50px;
 
         .tit {
-          font-size: 22px;
           color: #333;
           font-weight: bold;
+          font-size: 22px;
           line-height: 60px;
         }
       }
     }
 
-    .search-quanyi__city {
-      flex-flow: wrap;
-      position: relative;
-      width: 380px;
-
-      &:after {
-        content: "";
-        overflow: hidden;
-        position: absolute;
-        width: 2px;
-        height: 250px;
-        top: -47px;
-        right: 0;
-        background-color: #dddddd;
-      }
-
+    .more {
       > a {
-        display: inline-block;
-        line-height: 2.5;
-        color: $mainTextColor;
-        width: 67px;
+        display: inline-flex;
+        color: $theme-color;
         font-size: 20px;
-
-        &:hover {
-          color: $a-hover-color;
-        }
+        line-height: 45px;
       }
     }
 
@@ -196,24 +176,44 @@
 
       > a {
         display: inline-table;
-        color: $mainTextColor;
-        line-height: 2.5;
         width: 97px;
+        color: $mainTextColor;
         font-size: 20px;
-
-        &:hover {
-          color: $a-hover-color;
-        }
+        line-height: 2.5;
       }
     }
 
-    .more {
+    .search-quanyi__city {
+      flex-flow: wrap;
+      width: 380px;
+      position: relative;
+
       > a {
-        color: $theme-color;
-        line-height: 45px;
+        display: inline-block;
+        width: 67px;
+        color: $mainTextColor;
         font-size: 20px;
-        display: inline-flex;
+        line-height: 2.5;
       }
+
+      &::after {
+        width: 2px;
+        height: 250px;
+        position: absolute;
+        top: -47px;
+        right: 0;
+        overflow: hidden;
+        background-color: #ddd;
+        content: "";
+      }
+    }
+
+    .search-quanyi__city a:hover {
+      color: $a-hover-color;
+    }
+
+    .search-quanyi__brandtype a:hover {
+      color: $a-hover-color;
     }
   }
 </style>

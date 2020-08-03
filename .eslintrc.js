@@ -29,6 +29,10 @@ module.exports = {
     camelcase: 0,
     // 文件最后换行
     'eol-last': 0,
+    // 空格、空行 警告！
+    'no-trailing-spaces': 'warn',
+    'no-multiple-empty-lines': 'warn',
+    'no-mixed-spaces-and-tabs' : 'warn',
     // 关闭attribute强制横线连接
     'vue/attribute-hyphenation': 'off',
     // 单行内容的html标签，将内容置于一行中

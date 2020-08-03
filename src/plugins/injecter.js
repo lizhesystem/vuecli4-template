@@ -2,9 +2,7 @@
  * @description 全局注入器 一般需要注入到vue实例的话会用到
  */
 import Vue from 'vue'
-
 import { Loading, Message, MessageBox } from 'element-ui'
-
 Vue.use(Loading.directive)
 
 export const vueInjecter = () => {

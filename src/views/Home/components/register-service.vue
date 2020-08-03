@@ -51,8 +51,8 @@
     width: 350px;
 
     .title {
-      font-size: $font-size-title-lg;
       font-weight: bold;
+      font-size: $font-size-title-lg;
     }
 
     .apply-ser__post {

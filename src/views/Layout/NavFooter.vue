@@ -4,6 +4,33 @@
  -->
 <template>
   <div>
+
+    <!--合作银行start-->
+    <div class="container-service">
+      <div class="title">
+        合作银行
+      </div>
+      <div class="con">
+        <ul class="container-service__bank">
+          <li><img src="../../assets/images/bank1.png" alt=""></li>
+          <li><img src="../../assets/images/bank2.png" alt=""></li>
+          <li><img src="../../assets/images/bank3.png" alt=""></li>
+          <li><img src="../../assets/images/bank4.png" alt=""></li>
+          <li><img src="../../assets/images/bank5.png" alt=""></li>
+          <li><img src="../../assets/images/bank1.png" alt=""></li>
+          <li><img src="../../assets/images/bank2.png" alt=""></li>
+          <li><img src="../../assets/images/bank3.png" alt=""></li>
+          <li><img src="../../assets/images/bank4.png" alt=""></li>
+          <li><img src="../../assets/images/bank5.png" alt=""></li>
+          <li><img src="../../assets/images/bank1.png" alt=""></li>
+          <li><img src="../../assets/images/bank2.png" alt=""></li>
+          <li><img src="../../assets/images/bank3.png" alt=""></li>
+          <li><img src="../../assets/images/bank4.png" alt=""></li>
+        </ul>
+      </div>
+    </div>
+    <!--合作银行end-->
+
     <!--友情链接start-->
     <div class="container-link container">
 
@@ -33,44 +60,100 @@
 
     <!--footer-->
     <div class="container-footer">
-      <p>主办单位: <span class="ft36">南方林业产权交易所</span> 联系电话：<span class="ft36">400-888-888</span></p>
-      <p>Copyright © 2013-2016 赣ICP备XXXXXXXXXXX号 地址：郑州市南xxxxxxxxxx13楼1306. XXXXXXXX交易中心有限公司版权所有</p>
+      <p v-html="footerInfo.content"></p>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import store from '@/store'
+
   export default {
     name: 'NavFooter',
     components: {},
     data() {
       return {
-
+        footerInfo: '' // 底部footer信息
       }
     },
+    computed: {
+      ...mapGetters(['footer'])
+    },
+    created() {
+      this.getFooterByCode()
+    },
     methods: {
+      // 如果为空,设置值到store,下次取去store里取。
+      getFooterByCode() {
+        if (Object.keys(this.footer).length === 0) {
+          store.dispatch('getFooterInfo', 'footer').then(res => {
+            this.footerInfo = res
+          })
+        } else {
+          this.footerInfo = this.footer
+        }
+      },
       handleClick(tab, event) {
         console.log(tab, event)
       }
     }
+
   }
 </script>
 
 <style lang="scss" scoped>
 
   .container {
-    padding: 0 40px;
-    margin: auto;
-    height: 260px;
     display: flex;
+    height: 260px;
+    margin: auto;
+    padding: 0 40px;
 
     .title {
       width: 60px;
       height: 182px;
       padding: 0 15px;
-      font-size: 36px;
-      font-weight: bold;
       color: #333;
+      font-weight: bold;
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .con {
+      width: calc(100% - 60px);
+    }
+  }
+
+  /*合作银行*/
+  .container-service {
+    display: flex;
+    height: 260px;
+    margin: auto;
+    padding: 0 40px;
+
+    .title {
+      width: 60px;
+      height: 182px;
+      padding: 0 15px;
+      color: #333;
+      font-weight: bold;
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .con {
+      width: calc(100% - 60px);
+    }
+  }
+
+  .container-service__bank {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      width: 250px;
+      height: 130px;
       text-align: center;
     }
   }
@@ -81,11 +164,11 @@
     flex-wrap: wrap;
 
     li {
-      height: 91px;
-      width: calc(100% / 7);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 91px;
 
       a {
         color: #333;
@@ -93,25 +176,23 @@
         text-decoration: none;
       }
     }
-
   }
 
   /*底部*/
   .container-footer {
-    background-color: #f8f8f8;
-    padding: 20px 0;
+    padding: 30px 0;
     text-align: center;
+    background-color: #f8f8f8;
 
     p {
-      font-size: 18px;
       color: #949494;
+      font-size: 18px;
       line-height: 40px;
 
       .ft36 {
-        font-size: 36px;
         color: #25cb5b;
+        font-size: 36px;
       }
     }
-
   }
 </style>

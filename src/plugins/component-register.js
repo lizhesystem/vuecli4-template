@@ -6,6 +6,7 @@ import ElementLocale from 'element-ui/lib/locale'
 import i18n from '../locales'
 import VueLazyload from 'vue-lazyload'
 import ElementUI from 'element-ui'
+import VueLazyComponent from '@xunlei/vue-lazy-component'
 
 // 全局引入element
 Vue.use(ElementUI)
@@ -17,3 +18,6 @@ Vue.use(VueLazyload, {
 
 // i18n国际化
 ElementLocale.i18n((key, value) => i18n.t(key, value))
+
+// 组件懒加载
+Vue.use(VueLazyComponent)

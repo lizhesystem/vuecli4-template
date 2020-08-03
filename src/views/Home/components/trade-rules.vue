@@ -70,33 +70,35 @@
 </script>
 
 <style lang="scss" scoped>
-  .container-rules {
-    @include container($wrap: nowrap);
-  }
+.container-rules {
+  @include container($wrap: nowrap);
+}
 
-  .items {
-    width: 555px;
+.items {
+  width: 555px;
 
-    &:last-child li::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      background-color: #398f16;
-      float: left;
-      margin: 30px 20px 0 0;
-      border-radius: 6px;
-    }
+  &:last-child li::before {
+    float: left;
+    width: 6px;
+    height: 6px;
+    margin: 30px 20px 0 0;
+    border-radius: 6px;
+    background-color: #398f16;
+    content: "";
   }
-.container-rules__li{
+}
+
+.container-rules__li {
   display: block;
-  line-height: 64px;
   font-size: 20px;
+  line-height: 64px;
+
   @include ellipsis();
+
   span {
     float: right;
     color: #999;
     font-size: 18px;
   }
-
 }
 </style>

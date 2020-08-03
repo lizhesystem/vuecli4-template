@@ -61,9 +61,7 @@ const user = {
         })
       })
     },
-    GetButtons({
-                 commit
-               }) {
+    GetButtons({ commit }) {
       return new Promise((resolve) => {
         getButtons().then(res => {
           const data = res.data.data

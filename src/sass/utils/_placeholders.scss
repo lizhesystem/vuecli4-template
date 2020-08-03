@@ -34,14 +34,14 @@
 
 // 两端对齐
 %textJustify {
-  text-align: justify;
   //去除伪元素所占空间,但%textJustify内部元素必须设置字体大小(因为继承的关系，他们font-size也为0,所以需要重置)
   font-size: 0;
+  text-align: justify;
 
   &::after {
-    content: '';
     width: 100%;
     height: 0;
+    content: '';
 
     @include inline-block();
   }
@@ -55,8 +55,8 @@
 %clearfix {
   &::before,
   &::after {
-    content: "";
     display: table;
+    content: "";
   }
 
   &::after {

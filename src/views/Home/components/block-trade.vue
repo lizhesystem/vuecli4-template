@@ -181,8 +181,9 @@
 
 <style lang="scss" scoped>
   .container-blocktrade {
-    @include container($wrap: nowrap)
+    @include container($wrap: nowrap);
   }
+
   .zd_card__more--font {
     span:first-child {
       margin-left: 10px;

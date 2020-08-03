@@ -10,4 +10,6 @@ import ZdTransitionSlide from '@/base/ZdTransitionSlide'
 Vue.component(ZdTransitionSlide.name, ZdTransitionSlide)
 Vue.component(ZdSvgIcon.name, ZdSvgIcon)
 
-// ext library
+// svg library
+const req = require.context('@/assets/svgs', false, /\.svg$/)
+req.keys().map(req)

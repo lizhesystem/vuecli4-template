@@ -2,70 +2,70 @@
 // 选择文本样式
 @mixin selection($bgColor: #e74c3c, $color: #ecf0f1) {
   ::selection {
-    background-color: $bgColor;
     color: $color;
+    background-color: $bgColor;
   }
 
   ::-moz-selection {
-    background-color: $bgColor;
     color: $color;
+    background-color: $bgColor;
   }
 
   ::-webkit-selection {
-    background-color: $bgColor;
     color: $color;
+    background-color: $bgColor;
   }
 }
 
 // 设置retina一像素，父元素设置relative
 @mixin setTopLine($c: #c7c7c7) {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-top: 1px solid $c;
   color: $c;
+  content: '';
   transform-origin: 0 0;
   transform: scaleY(0.5);
 }
 
 @mixin setBottomLine($c: #c7c7c7) {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
   width: 100%;
   height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   border-bottom: 1px solid $c;
   color: $c;
+  content: '';
   transform-origin: 0 100%;
   transform: scaleY(0.5);
 }
 
 @mixin setLeftLine($c: #c7c7c7) {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 1px;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-left: 1px solid $c;
   color: $c;
+  content: '';
   transform-origin: 0 0;
   transform: scaleX(0.5);
 }
 
 @mixin setRightLine($c: #c7c7c7) {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
   width: 1px;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   border-right: 1px solid $c;
   color: $c;
+  content: '';
   transform-origin: 100% 0;
   transform: scaleX(0.5);
 }
@@ -81,10 +81,10 @@
 
 // 表单禁用样式
 @mixin disabled($bgColor: #e6e6e6, $textColor: #ababab) {
-  background-color: $bgColor !important;
   color: $textColor !important;
-  cursor: not-allowed !important;
+  background-color: $bgColor !important;
   pointer-events: none !important;
+  cursor: not-allowed !important;
 }
 
 // 设置过渡效果
@@ -107,7 +107,9 @@
 
   @if $filter {
     filter: progid:dximagetransform.microsoft.gradient(enabled='true', startColorstr='#{ie-hex-str($bgcolor)}', endColorstr='#{ie-hex-str($bgcolor)}');
-  } @else {
+  }
+
+  @else {
     background-color: #333;
   }
 }
@@ -120,7 +122,9 @@
   @if $line==1 {
     white-space: nowrap;
     text-overflow: ellipsis;
-  } @else {
+  }
+
+  @else {
     display: -webkit-box;
     -webkit-line-clamp: $line;
     -webkit-box-orient: vertical;
@@ -149,13 +153,13 @@
     }
   }
   #{$content} {
-    overflow: auto;
     padding-bottom: $footerH;
+    overflow: auto;
   }
   #{$footer} {
+    width: 100%;
     position: absolute;
     bottom: 0;
-    width: 100%;
   }
 }
 
@@ -168,9 +172,9 @@
   }
 
   @if $lte7 {
+    *display: inline;
     *vertical-align: auto;
     *zoom: 1;
-    *display: inline;
   }
 }
 
@@ -187,8 +191,8 @@
   }
 
   &-mainInner {
-    margin-left: $leftWidth + px;
     margin-right: $rightWidth + px;
+    margin-left: $leftWidth + px;
   }
 
   &-left {
@@ -225,35 +229,36 @@
   // 单独一个波点图所占空间，波点半径，波点图背景色，波点的颜色
   background-color: $base;
   background-image: radial-gradient($accent $dot, transparent 0), radial-gradient($accent $dot, transparent 0);
-  background-size: $size $size;
   background-position: 0 0, $size/2 $size/2;
+  background-size: $size $size;
 }
 
 // 棋盘背景(通过线性渐变生成，IE9+)
 @mixin bgCheckboard($size, $base, $accent: rgba(0, 0, 0, 0.25)) {
   // 单个棋格子大小，棋盘背景色，棋格颜色
   background-color: $base;
-  background-image: linear-gradient(45deg, $accent 25%, transparent 0, transparent 75%, $accent 0),
+  background-image:
+    linear-gradient(45deg, $accent 25%, transparent 0, transparent 75%, $accent 0),
     linear-gradient(45deg, $accent 25%, transparent 0, transparent 75%, $accent 0);
-  background-size: 2 * $size 2 * $size;
   background-position: 0 0, $size $size;
+  background-size: 2 * $size 2 * $size;
 }
 
 // 图片保持宽高比
 @mixin aspectRatio($width: 16, $height: 9) {
   // 默认16:9
   @at-root #{&}::before {
-    content: '';
     float: left; // 元素需要浮动，不然后面元素需要使用绝对定位
     height: 0; // 本身高度必须置0
     padding-top: percentage($height/$width); // 使用padding-top撑起高度
+    content: '';
   }
 
   @at-root #{&}::after {
-    // 清除浮动
-    content: '';
     display: table;
     clear: both;
+    // 清除浮动
+    content: '';
   }
 }
 
@@ -278,7 +283,9 @@
     &:only-child {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     &:first-child:nth-last-child(#{$n}),
     &:first-child:nth-last-child(#{$n}) ~ & {
       @content;
@@ -316,7 +323,9 @@
   // 判断圆角是list还是number
   @if (list==type-of($radius)) {
     border-radius: nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
-  } @else {
+  }
+
+  @else {
     border-radius: $radius;
   }
 
@@ -331,19 +340,19 @@
     }
 
     &:#{$position} {
-      content: '';
+      display: block;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      padding: 1px;
       position: absolute;
       top: 0;
       left: 0;
-      display: block;
-      width: 200%;
-      height: 200%;
-      transform: scale(0.5);
-      box-sizing: border-box;
-      padding: 1px;
-      transform-origin: 0 0;
-      pointer-events: none;
       border: 0 solid $color;
+      content: '';
+      pointer-events: none;
+      transform: scale(0.5);
+      transform-origin: 0 0;
 
       @each $directionMap in $directionMaps {
         border-#{$directionMap}-width: 1px;
@@ -352,7 +361,9 @@
       // 判断圆角是list还是number
       @if (list==type-of($radius)) {
         border-radius: nth($radius, 1) * 2 2 nth($radius, 2) * 2 nth($radius, 3) * 2 nth($radius, 4) * 2;
-      } @else {
+      }
+
+      @else {
         border-radius: $radius * 2;
       }
     }
@@ -366,7 +377,9 @@
       // 判断圆角是list还是number
       @if (list==type-of($radius)) {
         border-radius: nth($radius, 1) * 3 nth($radius, 2) * 3 nth($radius, 3) * 3 nth($radius, 4) * 3;
-      } @else {
+      }
+
+      @else {
         border-radius: $radius * 3;
       }
     }
@@ -387,23 +400,24 @@
 
 // 面板的样式
 @mixin panel($width: 300px, $bgc-color: #fff, $padding: 0, $fontSize: 14px, $color: #000) {
-  background: $bgc-color;
-  padding: $padding;
-  margin-left: auto;
   width: $width;
+  margin-left: auto;
+  padding: $padding;
   color: $color;
+  background: $bgc-color;
+
   > h4 {
-    font-size: 16px;
     height: 30px;
-    line-height: 30px;
     padding-left: 7px;
     border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
+    line-height: 30px;
 
     > span {
-      font-size: 14px;
       float: right;
       padding-right: 15px;
       color: #999;
+      font-size: 14px;
       cursor: pointer;
     }
   }
@@ -411,28 +425,31 @@
 
 // 内容面板公共样式
 @mixin contentStyle($width: 1040px) {
+  box-sizing: border-box;
   width: $width;
   padding-top: 2px;
-  box-sizing: border-box;
+
   > img {
-    height: 80px;
     width: 100%;
+    height: 80px;
   }
+
   .title {
-    height: 50px;
-    background: #fff;
-    margin: 18px 0 18px;
     display: flex;
+    height: 50px;
+    margin: 18px 0 18px;
+    background: #fff;
     cursor: pointer;
 
     > p {
-      font-size: 16px;
-      font-weight: 500;
       width: 82px;
-      line-height: 50px;
-      position: relative;
-      text-align: center;
       margin-left: 20px;
+      position: relative;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 50px;
+      text-align: center;
+
       &:nth-of-type(2) {
         margin-left: 0;
       }

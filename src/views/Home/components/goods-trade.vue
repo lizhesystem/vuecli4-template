@@ -46,34 +46,38 @@
 
 <style lang="scss" scoped>
   .container-goodstrade {
-    padding: 0 40px;
     min-width: $layout-content-min-width;
+    padding: 0 40px;
+
     .con {
       display: flex;
       justify-content: space-between;
     }
   }
 
-  .container-goodstrade__li{
+  .container-goodstrade__li {
     display: block;
     width: 340px;
     height: 500px;
     border: 1px #dddcdd solid;
-    .txt{
-      font-size: 20px;
-      color: #333;
+
+    .txt {
       padding: 10px;
-    }
-    .neirong{
-      font-size: 20px;
       color: #333;
-      padding: 10px;
+      font-size: 20px;
     }
-    .price{
-      font-size: 28px;
+
+    .neirong {
+      padding: 10px;
+      color: #333;
+      font-size: 20px;
+    }
+
+    .price {
+      padding: 10px;
       color: #e91717;
-      padding: 10px;
       font-weight: bold;
+      font-size: 28px;
     }
   }
 </style>

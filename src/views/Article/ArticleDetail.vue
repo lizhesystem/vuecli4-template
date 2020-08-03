@@ -19,27 +19,13 @@
       <!--内容右侧start-->
       <div class="container-article__detail__title">
         <div class="title">
-          <h1>“真正做到为官一任，造福一方”——习近平论夯实脱贫攻坚的人才支撑</h1>
-          <div class="post_time_source">
-            2020-06-27 13:31:49
-            来源：求实网
-          </div>
+          <h1>{{ article.title }}</h1>
+        </div>
+        <div class="post_time_source">
+          {{ article.createTime }}
         </div>
         <div class="container-article__content">
-          <p>
-            &nbsp;&nbsp;&nbsp;&nbsp;从生产大队党支部书记，到泱泱大国最高领导人，习近平总书记无时无刻不牵挂着贫困地区、贫困群众。正如总书记自己所说：“我先后在中国县、市、省、中央工作，扶贫始终是我工作的一个重要内容，我花的精力最多。”</p>
-          <p>
-            从总书记关于扶贫、脱贫的重要论述中，笔记君撷取了一些大家耳熟能详的经典话语，让我们一起感受深情、收获智慧、坚定信心、汲取力量，坚决全面打赢脱贫攻坚战。</p>
-
-          <p>抓紧抓紧再抓紧、做实做实再做实</p>
-
-          <p>各级领导干部一定要多到农村去，多到贫困地区去，了解真实情况，带着深厚感情做好扶贫开发工作，把扶贫开发工作抓紧抓紧再抓紧、做实做实再做实，真正使贫困地区群众不断得到真实惠。</p>
-
-          <p>——2014年3月7日在参加十二届全国人大二次会议贵州代表团审议时的讲话</p>
-
-          <p>心无旁骛、聚精会神</p>
-
-          <p>党和国家要把抓好扶贫开发工作作为重大任务，贫困地区各级领导干部更要心无旁骛、聚精会神抓好这项工作，团结带领广大群众通过顽强奋斗早日改变面貌。“当官不为民作主，不如回家卖红薯。”说的就是这个道理。</p>
+          <p v-html="article.content"></p>
         </div>
 
       </div>
@@ -57,24 +43,9 @@
               <a href=""><img src="../../assets/images/bg_578x355.png" alt=""></a>
             </div>
             <ul>
-              <li>
-                <a href="">千万别小瞧这一风险 油价或被困35—45美元/桶区间</a>
+              <li v-for="item in articleList" :key="item.id" @click="switchArticle(item)">
+                <a href="javascript:void(0)">{{ item.title }}</a>
               </li>
-              <li><a href="">
-                黑马诞生！这一金属突然被一致看好
-              </a></li>
-              <li><a href="">
-                国开行携手中证指数联合发布“中证7—10年国开债流动性指数”
-              </a></li>
-              <li>
-                <a href="">千万别小瞧这一风险 油价或被困35—45美元/桶区间</a>
-              </li>
-              <li><a href="">
-                黑马诞生！这一金属突然被一致看好
-              </a></li>
-              <li><a href="">
-                国开行携手中证指数联合发布“中证7—10年国开债流动性指数”
-              </a></li>
             </ul>
           </div>
         </zd-card>
@@ -86,31 +57,57 @@
 
 <script>
   import ZdCard from '@/components/ZdCard'
+  import { getArticleById, getList } from 'Api/article'
 
   export default {
     name: 'ArticleDetail',
     components: { ZdCard },
+    // article路由配置props:true后可直接接收路由后缀的id
+    // eslint-disable-next-line vue/require-prop-types
+    props: ['id'],
     data() {
-      return {}
+      return {
+        article: {},
+        articleList: [],
+        page: {
+          current: 1,
+          size: 6
+        }
+      }
+    },
+    created() {
+      this.getArticleDetail()
+    },
+    methods: {
+      // 根据id获取新闻,再根据文章id获取对应资讯
+      getArticleDetail() {
+        getArticleById(this.id).then(res => {
+          const articleDetail = res.data.data
+          this.article = articleDetail
+          getList(this.page.current, this.page.size, { newsItemId: articleDetail.newsItemId }).then(res => {
+            this.articleList = res.data.data.records
+          })
+        })
+      },
+      // 切换新闻
+      switchArticle(item) {
+        this.article = item
+      }
     }
-    // 进入路由前获取数据
-    //  beforeRouteEnter(to, from, next) {
-    //    console.log('get data')
-    //    next()
-    //  }
   }
 </script>
 
 <style lang="scss" scoped>
   .container-article__nav {
-    padding: 0 40px;
     margin: 20px 0;
+    padding: 0 40px;
   }
 
   .container-article__detail {
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
+    margin-bottom: 50px;
   }
 
   /*左侧文章详情*/
@@ -118,30 +115,32 @@
     width: calc(100% - 620px);
 
     .title {
-      margin: 20px auto;
-      color: #333333;
-      font-size: 36px;
-      font-weight: bold;
+      @include ellipsis(1);
+      text-align: center;
       height: 50px;
+      margin: 20px auto;
+      color: #333;
+      font-weight: bold;
+      font-size: 36px;
 
       h1 {
-        font-size: 100%;
         font-weight: normal;
+        font-size: 100%;
       }
+    }
 
-      .post_time_source {
-        line-height: 40px;
-        font-size: 14px;
-        font-weight: 400;
-        text-align: center;
-      }
+    .post_time_source {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 10px;
+      text-align: center;
     }
   }
 
   .container-article__content {
     padding: 20px;
-    line-height: 30px;
     font-size: 18px;
+    line-height: 30px;
 
     p {
       font-size: 18px;
@@ -165,20 +164,20 @@
       display: block;
       width: 520px;
       height: 60px;
+      overflow: hidden;
+      color: #333;
       font-size: 20px;
-      color: #333333;
       line-height: 60px;
       text-overflow: ellipsis;
-      overflow: hidden;
 
-      &:before {
-        content: "";
+      &::before {
+        float: left;
         width: 6px;
         height: 6px;
-        background-color: #398f16;
-        float: left;
         margin: 30px 20px 0 0;
         border-radius: 6px;
+        background-color: #398f16;
+        content: "";
       }
 
       a:hover {

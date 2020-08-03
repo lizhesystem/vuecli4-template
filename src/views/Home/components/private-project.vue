@@ -164,6 +164,6 @@
 <style lang="scss" scoped>
   /*非公权益项目*/
   .container-privateproject {
-    @include container($wrap: nowrap)
+    @include container($wrap: nowrap);
   }
 </style>

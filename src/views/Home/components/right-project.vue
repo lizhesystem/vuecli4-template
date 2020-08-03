@@ -55,7 +55,7 @@
 <style lang="scss" scoped>
   /*第三行权益项目*/
   .container-project {
-    @include container($direction: column)
+    @include container($direction: column);
   }
 
   .container-project__ul {
@@ -67,11 +67,11 @@
 
   .container-project__li {
     display: block;
+    float: left;
     width: 432px;
     height: 515px;
-    float: left;
-    border: 1px #dddcdd solid;
     margin-bottom: 30px;
+    border: 1px #dddcdd solid;
 
     a {
       color: #333;
@@ -82,10 +82,10 @@
     }
 
     .txt {
-      font-size: 24px;
-      color: #333;
-      line-height: 60px;
       padding: 0 10px;
+      color: #333;
+      font-size: 24px;
+      line-height: 60px;
     }
 
     .map {

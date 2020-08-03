@@ -17,6 +17,10 @@ const getters = {
   roles: state => state.user.roles,
   permission: state => state.user.permission,
   menu: state => state.user.menu,
-  menuAll: state => state.user.menuAll
+  menuAll: state => state.user.menuAll,
+  // page
+  footer: state => state.page.footer,
+  midAdvSmall: state => state.page.midAdvSmall,
+  midAdvBig: state => state.page.midAdvBig
 }
 export default getters

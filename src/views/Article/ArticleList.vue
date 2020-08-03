@@ -15,17 +15,17 @@
     </div>
     <!--中间横屏广告end-->
     <div class="container-articlelist__list">
-      <!--列表右侧start-->
-      <div class="news-left">
+
+      <!--列表左侧start-->
+      <div class="news-left" v-loading="articleListStatus">
         <div class="title">交易所资讯</div>
         <div class="con">
           <ul>
-            <li class="news-right__li" v-for="(i,index) in count" :key="index">
-              <h1><a href="">聚焦煤电企业需求 动力煤期现业务线上培训获好评</a></h1>
+            <li class="news-right__li" v-for="(item,index) in articleList.records" :key="index">
+              <h1 @click="getArticleDetail(item)">{{ item.title }}</h1>
               <span>2020-04-20</span>
               <p>
-                <a href="">近日，“煤电企业期现结合业务线上培训班”第5期顺利结束，该培训班由郑州商品交易所、中国煤炭运销协会、
-                  中国煤炭市场网联合举办，主要针对煤电企业需求，引导企业学习了解期现策略，推广企业利用动力煤期货开展风险管理和基差贸易等期现业务的经验。</a>
+                <a v-html="item.content"></a>
               </p>
             </li>
           </ul>
@@ -34,11 +34,11 @@
               background
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :current-page="currentPage4"
+              :current-page="page.current"
               :page-sizes="[10,20,30,50]"
               :page-size="100"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="100">
+              :total="articleList.total">
             </el-pagination>
           </div>
 
@@ -87,22 +87,45 @@
 
 <script>
   import ZdCard from '@/components/ZdCard'
+  import { getList } from '@/api/article'
 
   export default {
     name: 'ArticleList',
     components: { ZdCard },
+    computed: {},
     data() {
       return {
-        count: 10,
-        currentPage4: 4
+        itemId: '', // 新闻id 根据id获取新闻列表
+        articleList: {}, // 新闻列表对象
+        articleListStatus: false, // 加载状态
+        page: { // 分页数据
+          current: 1,
+          size: 10
+        }
       }
     },
+    created() {
+      this.itemId = this.$route.query.newstype
+      this.getNewsList()
+    },
     methods: {
+      async getNewsList() {
+        this.articleListStatus = true
+        const { data: res } = await getList(this.page.current, this.page.size, { newsItemId: this.itemId })
+        this.articleListStatus = false
+        this.articleList = res.data
+        document.body.scrollTop = document.documentElement.scrollTop = 0
+      },
+      getArticleDetail(item) {
+        this.$router.push({ path: `/article/${item.id}` })
+      },
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`)
+        this.page.size = val
+        this.getNewsList()
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
+        this.page.current = val
+        this.getNewsList()
       }
     }
   }
@@ -110,8 +133,8 @@
 
 <style lang="scss" scoped>
   .container-articlelist__nav {
-    padding: 0 40px;
     margin: 20px 0;
+    padding: 0 40px;
   }
 
   .container-articlelist__list {
@@ -125,40 +148,42 @@
     width: calc(100% - 620px);
 
     .title {
-      margin: 20px auto;
-      color: #333333;
-      font-size: 36px;
-      font-weight: bold;
       height: 50px;
+      margin: 20px auto;
+      color: #333;
+      font-weight: bold;
+      font-size: 36px;
     }
   }
 
   .news-right__li {
-    font-size: 24px;
-    border-bottom: 1px #ccc solid;
     padding: 30px 0;
+    border-bottom: 1px #ccc solid;
+    font-size: 24px;
 
     h1 {
-      font-size: 24px;
+      color: #333;
       font-weight: bold;
-      color: #333333;
+      font-size: 24px;
+      cursor: pointer;
 
-      a:hover {
+      &:hover {
         color: $a-hover-color;
       }
     }
 
     span {
+      color: #333;
       font-size: 16px;
-      color: #333333;
     }
 
     p {
       height: 60px;
+      color: #999;
       font-size: 16px;
-      color: #999999;
       line-height: 30px;
-      @include ellipsis($line: 2)
+
+      @include ellipsis($line: 2);
     }
   }
 
@@ -170,30 +195,34 @@
   .news-right {
     width: 580px;
   }
-  .news-right__list{
-    .pic{
+
+  .news-right__list {
+    .pic {
       width: 580px;
       height: 355px;
     }
-    li{
+
+    li {
       display: block;
       width: 520px;
       height: 60px;
+      overflow: hidden;
+      color: #333;
       font-size: 20px;
-      color: #333333;
       line-height: 60px;
       text-overflow: ellipsis;
-      overflow: hidden;
-      &:before{
-        content: "";
+
+      &::before {
+        float: left;
         width: 6px;
         height: 6px;
-        background-color: #398f16;
-        float: left;
         margin: 30px 20px 0 0;
         border-radius: 6px;
+        background-color: #398f16;
+        content: "";
       }
-      a:hover{
+
+      a:hover {
         color: $a-hover-color;
       }
     }

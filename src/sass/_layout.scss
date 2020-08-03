@@ -3,8 +3,9 @@
 
 // 公共横屏广告
 .container-midadv {
-  padding: 0 40px;
   margin: auto;
+  padding: 0 40px;
+  height: 182px;
 
   .ad4 {
     width: 100%;
@@ -19,10 +20,23 @@
 // 横屏mixin
 @mixin container($padding: 40, $direction: row, $margin-bootom: 30, $wrap: wrap) {
   display: flex;
-  justify-content: space-between;
   flex-direction: $direction; // 默认横向
   flex-wrap: $wrap; // 超出换行 or nowrap
-  padding: 0 $padding + px;
-  margin-bottom: $margin-bootom + px;
+  justify-content: space-between;
   min-width: $layout-content-min-width;
+  margin-bottom: $margin-bootom + px;
+  padding: 0 $padding + px;
+}
+
+// 公共字体大小,针对管理端Avue富文本编辑器对应的字体选项
+.ql-size-huge {
+  font-size: 2.5em;
+}
+
+.ql-size-large {
+  font-size: 1.5em;
+}
+
+.ql-size-small {
+  font-size: 0.75em;
 }

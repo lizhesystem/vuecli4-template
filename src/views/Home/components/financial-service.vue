@@ -184,7 +184,7 @@
 
 <style lang="scss" scoped>
   .container-financial {
-    @include container($wrap: nowrap)
+    @include container($wrap: nowrap);
   }
 
   .zd_card__more--font {

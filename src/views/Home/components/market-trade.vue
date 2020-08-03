@@ -47,32 +47,36 @@
 </script>
 
 <style lang="scss" scoped>
-  .container-maket{
+  .container-maket {
     @include container($wrap: nowrap);
   }
-  .container-maket__pic{
+
+  .container-maket__pic {
     width: 1185px;
   }
 
-  .container-analysis{
+  .container-analysis {
     width: 560px;
   }
+
   .container-analysis__li {
     display: block;
-    line-height: 64px;
     font-size: 20px;
+    line-height: 64px;
+
     @include ellipsis();
 
     &::before {
-      content: "";
+      float: left;
       width: 6px;
       height: 6px;
-      background-color: #398f16;
-      float: left;
       margin: 30px 20px 0 0;
       border-radius: 6px;
+      background-color: #398f16;
+      content: "";
     }
-    a{
+
+    a {
       color: #333;
     }
   }

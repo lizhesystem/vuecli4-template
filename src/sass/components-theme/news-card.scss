@@ -5,15 +5,15 @@
 .zd-card__header {
   display: flex;
   align-items: flex-end;
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
 }
 
 .zd-card__tip {
   display: inline-block;
-  margin: 6px 10px 0 0;
   width: 8px;
   height: 44px;
+  margin: 6px 10px 0 0;
   background-color: $theme-color;
 }
 
@@ -23,27 +23,28 @@
 }
 
 .zd-card__title--normal {
-  font-size: $font-size-title;
   font-weight: 400;
+  font-size: $font-size-title;
 }
 
 .zd-card__title--bold {
-  font-size: $font-size-title-lg;
   font-weight: bold;
+  font-size: $font-size-title-lg;
 }
 
 .zd_card__more {
-  margin-left: auto;
-  margin-bottom: auto;
   float: right;
-  font-size: 20px;
-  font-weight: 400;
-  cursor: pointer;
+  margin-bottom: auto;
+  margin-left: auto;
   color: #999;
+  font-weight: 400;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .zd_card__more--font {
   font-size: $font-size-title;
+
   a {
     margin: 0 8px;
     color: $mainTextColor;

@@ -33,9 +33,10 @@ export default [
         }
       },
       {
-        path: 'article/:id(\\d+)',
+        path: 'article/:id',
         name: 'article',
         component: ArticleDetail,
+        props: true,
         meta: {
           title: '详情'
         }

@@ -137,13 +137,15 @@
 <style lang="scss" scoped>
   .container-goodsturnover {
     @include container($wrap: nowrap);
+
     margin-top: 40px;
   }
 
   .container-warning__li {
     display: block;
-    line-height: 64px;
     font-size: 20px;
+    line-height: 64px;
+
     @include ellipsis();
 
     span {
@@ -153,13 +155,13 @@
     }
 
     &::before {
-      content: "";
+      float: left;
       width: 6px;
       height: 6px;
-      background-color: #398f16;
-      float: left;
       margin: 30px 20px 0 0;
       border-radius: 6px;
+      background-color: #398f16;
+      content: "";
     }
   }
 </style>

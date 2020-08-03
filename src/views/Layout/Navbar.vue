@@ -60,10 +60,10 @@
 <style lang="scss" scoped>
   .header-navbar {
     height: 74px;
-    background-color: $theme-color;
+    margin: 0 auto 40px auto;
     padding: 0 20px;
     text-align: center;
-    margin: 0 auto 40px auto;
+    background-color: $theme-color;
 
     ul {
       display: flex;
@@ -71,15 +71,15 @@
   }
 
   .header-navbar__li {
-    line-height: 74px;
-    width: calc(100% / 11 - 5px);
     display: inline-block;
+    width: calc(100% / 11 - 5px);
+    line-height: 74px;
   }
 
   .header-navbar__li ::v-deep .el-button--primary {
     height: 100%;
+    color: #fff;
     font-size: 22px;
-    color: #ffffff;
   }
 
 </style>

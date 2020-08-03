@@ -1,6 +1,26 @@
 /**
- * @description 字典相关常量
+ * @description 字典/Map相关常量
  */
+
+export const newsTypeKey = new Map([
+  ['notice', 'SET_NOTICE'],
+  ['risk', 'SET_RISK'],
+  ['analysis', 'SET_ANALYSIS'],
+  ['information', 'SET_INFORMATION'],
+  ['policies', 'SET_POLICIES'],
+  ['rule', 'SET_RULE'],
+  ['case', 'SET_CASE']
+])
+
+export const newsTypeRouterKey = new Map([
+  ['notice', 'noticeList'],
+  ['risk', 'riskList'],
+  ['analysis', 'analysisList'],
+  ['information', 'information'],
+  ['policies', 'policies'],
+  ['rule', 'ruleList'],
+  ['case', 'caseList']
+])
 
 export const sex = [
   {

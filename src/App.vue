@@ -4,7 +4,7 @@
       <router-view/>
     </ZdTransitionSlide>
     <!--全局返回顶部-->
-    <el-backtop style="height: 55px;width: 55px"/>
+    <el-backtop style=" width: 55px; height: 55px;"/>
   </div>
 </template>
 

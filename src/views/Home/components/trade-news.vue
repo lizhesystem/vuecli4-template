@@ -81,90 +81,104 @@
 </script>
 
 <style lang="scss" scoped>
-.container-news{
+.container-news {
   @include container($wrap: nowrap);
 }
 
-  .container-news__trade{
-    width: 1185px;
-    .con{
-      width: 547px;
-      float: left;
-      .pic{
-        width: 547px;
-        height: 456px;
-        overflow: hidden;
-      }
-      h1{
-        font-size: 24px;
-        color: #333;
-        line-height: 40px;
-      }
-      p{
-        font-size: 20px;
-        color: #999;
-        line-height: 21px;
+.container-news__industry {
+  width: 580px;
+
+  .pic {
+    width: 580px;
+    height: 354px;
+    position: relative;
+
+    p {
+      display: block;
+      width: 580px;
+      height: 45px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 45px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      a {
+        color: #fff;
       }
     }
-    .conn{
-      float: right;
-      width: 610px;
-      li{
-        display: block;
-        height: 168px;
-        margin-bottom: 40px;
-        .picture{
-          width: 201px;
-          float: left;
-          margin-right: 30px;
-        }
-        h1{
-          font-size: 24px;
-          padding-bottom: 20px;
-        }
-        p{
-          font-size: 20px;
-          line-height: 30px;
-        }
-      }
+  }
+}
+
+.container-news__trade {
+  width: 1185px;
+
+  .con {
+    float: left;
+    width: 547px;
+
+    .pic {
+      width: 547px;
+      height: 456px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      line-height: 40px;
+    }
+
+    p {
+      color: #999;
+      font-size: 20px;
+      line-height: 21px;
     }
   }
 
-  .container-news__industry{
-    width: 580px;
-    .pic{
-      width: 580px;
-      height: 354px;
-      position: relative;
-      p{
-        display: block;
-        width: 580px;
-        height: 45px;
-        background-color: rgba(0,0,0,0.5);
-        position: absolute;
+  .conn {
+    float: right;
+    width: 610px;
+
+    li {
+      display: block;
+      height: 168px;
+      margin-bottom: 40px;
+
+      .picture {
+        float: left;
+        width: 201px;
+        margin-right: 30px;
+      }
+
+      h1 {
+        padding-bottom: 20px;
+        font-size: 24px;
+      }
+
+      p {
         font-size: 20px;
-        color: #fff;
-        line-height: 45px;
-        bottom: 0;
-        left: 0;
-        text-align: center;
-        a{
-          color: #fff;
-        }
+        line-height: 30px;
       }
     }
   }
-  .container-news__li{
-    font-size: 20px;
-    line-height: 45px;
-    :before{
-      content: "";
-      width: 6px;
-      height: 6px;
-      background-color: #398f16;
-      float: left;
-      margin: 20px 20px 0 0;
-      border-radius: 6px;
-    }
+}
+
+.container-news__li {
+  font-size: 20px;
+  line-height: 45px;
+
+  ::before {
+    float: left;
+    width: 6px;
+    height: 6px;
+    margin: 20px 20px 0 0;
+    border-radius: 6px;
+    background-color: #398f16;
+    content: "";
   }
+}
 </style>

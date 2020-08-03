@@ -15,7 +15,11 @@ Vue.use(Router)
 
 const router = new Router({
   ...ROUTER_DEFAULT_CONFIG,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    // 路由切换，让页面滚动到顶部
+    return { x: 0, y: 0 }
+  }
 })
 
 // 加载路由拦截器

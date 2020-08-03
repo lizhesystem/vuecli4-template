@@ -54,12 +54,9 @@
 </script>
 
 <style scoped lang="scss">
-  /*@media (min-width: 760px) {*/
-  /*  */
-  /*}*/
   .navHeader-top {
-    height: 165px;
     display: flex;
+    height: 165px;
 
     .logo {
       margin-top: 20px;
@@ -67,19 +64,19 @@
     }
 
     .reglogin {
+      display: flex;
       padding-left: 60px;
       line-height: 165px;
-      display: flex;
     }
 
     .search {
-      padding: 60px 0 0 150px;
       display: flex;
+      padding: 60px 0 0 150px;
     }
 
     .top-right {
-      padding: 40px 0 0 130px;
       display: flex;
+      padding: 40px 0 0 130px;
 
       .ewm {
         text-align: center;
@@ -90,6 +87,7 @@
       }
     }
   }
+
   /*覆盖样式*/
   .reglogin ::v-deep .el-button--text {
     font-size: 20px;
@@ -98,14 +96,14 @@
   .search ::v-deep .el-input__inner {
     width: 380px;
     height: 58px;
-    font-size: 18px;
     padding: 0 5px;
+    font-size: 18px;
   }
 
   .search ::v-deep .el-button--primary {
     width: 120px;
     height: 58px;
+    color: #fff;
     font-size: 26px;
-    color: #ffffff;
   }
 </style>

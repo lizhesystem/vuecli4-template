@@ -8,18 +8,18 @@ const svgSprite = config => {
   const svgRule = config.module.rule('svg')
   svgRule.uses.clear()
   svgRule.include
-    .add(path.resolve(__dirname, 'src/assets/svgs'))
-    .end()
-    .use('svg-sprite-loader')
-    .loader('svg-sprite-loader')
-    .options({})
-    .end()
-    .use('svgo-loader')
-    .loader('svgo-loader')
-    .options({
-      plugins: [{ removeViewBox: false }, { removeXMLNS: true }]
-    })
-    .end()
+      .add(resolve('./src/assets/svgs'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({})
+      .end()
+      .use('svgo-loader')
+      .loader('svgo-loader')
+      .options({
+        plugins: [{ removeViewBox: false }, { removeXMLNS: true }]
+      })
+      .end()
 }
 
 // 设置cdn
@@ -35,8 +35,7 @@ const setCDN = config => {
       'element-ui': 'ELEMENT',
       axios: 'axios'
     },
-    css: [
-    ],
+    css: [],
     js: [
       '//cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
       '//cdn.jsdelivr.net/npm/vue-router@3.2.0/dist/vue-router.min.js',
@@ -47,13 +46,13 @@ const setCDN = config => {
   }
   config.externals(assetsCDN.externals)
   config.plugin('html')
-    .tap(args => {
-      args[0].cdn = assetsCDN
-      return args
-    })
+      .tap(args => {
+        args[0].cdn = assetsCDN
+        return args
+      })
 }
 
-// 生成环境删除console、debugger
+// 生产环境删除console、debugger
 const dropConsole = config => {
   if (process.env.NODE_ENV !== 'production') return
 
@@ -91,16 +90,22 @@ const imgGZip = config => {
 
   // 压缩图片
   config.module
-    .rule('images')
-    .use('image-webpack-loader')
-    .loader('image-webpack-loader')
-    .options({
-      mozjpeg: { progressive: true, quality: 65 },
-      optipng: { enabled: false },
-      pngquant: { quality: [0.65, 0.9], speed: 4 },
-      gifsicle: { interlaced: false }
-      // webp: { quality: 75 }
-    })
+      .rule('images')
+      .use('image-webpack-loader')
+      .loader('image-webpack-loader')
+      .options({
+        mozjpeg: {
+          progressive: true,
+          quality: 65
+        },
+        optipng: { enabled: false },
+        pngquant: {
+          quality: [0.65, 0.9],
+          speed: 4
+        },
+        gifsicle: { interlaced: false }
+        // webp: { quality: 75 }
+      })
 }
 
 // 启用打包分析
@@ -111,29 +116,28 @@ const enableBundleAnalysis = config => {
     config.plugin('bundle-analysis').use(BundleAnalyzerPlugin)
   }
 }
-
+// 别名配置
 const resolveAlias = config => {
   config.resolve.alias
-    .set('@', resolve('src'))
+      .set('@', resolve('src'))
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: '/',
   devServer: {
     proxy: {
-      // 代理所有/api开头的请求
-      '/api': {
-        target: 'http://192.168.2.237:8080',
+      // 代理配置：代理所有/api开头的请求
+      [process.env.VUE_APP_API_BASE_URL]: {
+        target: 'http://127.0.0.1:8080',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-          // 将最终url中匹配正则的部分替换成对应字符串
-          // 下面是将最终url中开头的/api替换成''
-          '^/api': '/'
+          ['^' + process.env.VUE_APP_API_BASE_URL]: ''
         }
       }
     }
   },
+
   chainWebpack: config => {
     svgSprite(config)
     setCDN(config)
@@ -144,17 +148,17 @@ module.exports = {
     resolveAlias(config)
   },
   pluginOptions: {
-    // vue-cli-plugin-style-resources-loader全局变量
+    // vue-cli-plugin-style-resources-loader全局style变量
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns: [
-        path.resolve(__dirname, 'src/sass/utils/_variablesCustom.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_function.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_mixins.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_mediaQuery.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_placeholders.scss'),
-        path.resolve(__dirname, 'src/sass/_transition.scss.scss'),
-        path.resolve(__dirname, 'src/sass/_layout.scss')
+        resolve('./src/sass/utils/_variablesCustom.scss'),
+        resolve('./src/sass/utils/_function.scss'),
+        resolve('./src/sass/utils/_mixins.scss'),
+        resolve('./src/sass/utils/_mediaQuery.scss'),
+        resolve('./src/sass/utils/_placeholders.scss'),
+        resolve('./src/sass/_transition.scss.scss'),
+        resolve('./src/sass/_layout.scss')
       ]
     }
   }
