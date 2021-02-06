@@ -83,7 +83,7 @@ export const vaildatePc = function () {
     'iPad', 'iPod'
   ]
   let flag = true
-  for (var v = 0; v < Agents.length; v++) {
+  for (let v = 0; v < Agents.length; v++) {
     if (userAgentInfo.indexOf(Agents[v]) > 0) {
       flag = false
       break
@@ -109,7 +109,7 @@ export function cardid(code) {
   const list = []
   let result = true
   let msg = ''
-  var city = {
+  let city = {
     11: '北京',
     12: '天津',
     13: '河北',
@@ -157,13 +157,13 @@ export function cardid(code) {
         code = code.split('')
         // ∑(ai×Wi)(mod 11)
         // 加权因子
-        var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
+        let factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
         // 校验位
-        var parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2, 'x']
-        var sum = 0
-        var ai = 0
-        var wi = 0
-        for (var i = 0; i < 17; i++) {
+        let parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2, 'x']
+        let sum = 0
+        let ai = 0
+        let wi = 0
+        for (let i = 0; i < 17; i++) {
           ai = code[i]
           wi = factor[i]
           sum += ai * wi
@@ -192,7 +192,7 @@ export function isvalidatemobile(phone) {
   const list = []
   let result = true
   let msg = ''
-  var isPhone = /^0\d{2,3}-?\d{7,8}$/
+  let isPhone = /^0\d{2,3}-?\d{7,8}$/
   // 增加134 减少|1349[0-9]{7}，增加181,增加145，增加17[678]
   if (!validatenull(phone)) {
     if (phone.length === 11) {
@@ -234,7 +234,7 @@ export function isvalidateemail(email) {
  * 判断姓名是否正确
  */
 export function validatename(name) {
-  var regName = /^[\u4e00-\u9fa5]{2,4}$/
+  let regName = /^[\u4e00-\u9fa5]{2,4}$/
   if (!regName.test(name)) return false
   return true
 }
@@ -282,7 +282,7 @@ export function validatenull(val) {
   } else if (val instanceof Object) {
     if (JSON.stringify(val) === '{}') return true
   } else {
-    if (val === 'null' || val == null || val === 'undefined' || val === undefined || val === '') return true
+    if (val === 'null' || val === null || val === 'undefined' || val === undefined || val === '') return true
     return false
   }
   return false

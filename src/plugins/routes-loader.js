@@ -15,5 +15,6 @@ export default function routesLoader(defaultRoutes = []) {
     // 将file的default导出模块添加到routes数组中
     routes = routes.concat(file.default)
   })
+  console.log(routes)
   return routes
 }

@@ -3,28 +3,43 @@
  * @author Lz on 2020-07-09
  -->
 <template>
-  <div>
-    <nav-header/>
-    <Navbar/>
-    <ZdTransitionSlide>
+  <div class="container-main">
+    <side-bar/>
+    <div class="container-right">
+      <nav-header/>
       <router-view/>
-    </ZdTransitionSlide>
-    <nav-footer/>
+    </div>
   </div>
 </template>
 
 <script>
-  import Navbar from '@/views/Layout/Navbar'
-  import NavHeader from '@/views/Layout/NavHeader'
-  import NavFooter from '@/views/Layout/NavFooter'
 
-  export default {
-    name: 'Layout',
-    components: { NavFooter, NavHeader, Navbar },
-    data() {
-      return {}
-    }
+
+import SideBar from './SideBar'
+import NavHeader from './NavHeader'
+
+export default {
+  name: 'Layout',
+  components: {
+    NavHeader,
+    SideBar
+
+  },
+  data() {
+    return {}
   }
+}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container-main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+
+  .container-right {
+    width: calc(100% - 120px);
+  }
+}
+</style>

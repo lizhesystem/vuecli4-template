@@ -3,43 +3,37 @@
  */
 
 /* Layout */
-const Layout = () => import('@/views/Layout/Layout')
-
+import Layout from '@/views/Layout/Layout'
 // 首页
-const Home = () => import('@/views/Home/home')
-const ArticleList = () => import('@/views/Article/ArticleList') // 资讯列表
-const ArticleDetail = () => import('@/views/Article/ArticleDetail')// 资讯详情
+const Home = () => import(/* webpackChunkName: "home" */'@/views/Home')
+const child = () => import(/* webpackChunkName: "home" */'@/views/Home/HomeChild/Child1')
+const child1 = () => import(/* webpackChunkName: "home" */'@/views/Home/HomeChild/Child2')
 
 export default [
   {
     path: '',
     component: Layout,
-    redirect: '/home',
+    redirect: '/',
     children: [
       {
-        path: '/home',
+        path: '/',
         name: 'home',
         component: Home,
         meta: {
           title: '首页'
-        }
-      },
-      {
-        path: 'articlelist',
-        name: 'articlelist',
-        component: ArticleList,
-        meta: {
-          title: '文章列表'
-        }
-      },
-      {
-        path: 'article/:id',
-        name: 'article',
-        component: ArticleDetail,
-        props: true,
-        meta: {
-          title: '详情'
-        }
+        },
+        children: [
+          {
+            path: '/home/child',
+            name: 'child',
+            component: child
+          },
+          {
+            path: '/home/child1',
+            name: 'child1',
+            component: child1
+          }
+        ]
       }
     ]
   }

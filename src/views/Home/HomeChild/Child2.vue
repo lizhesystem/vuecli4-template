@@ -1,9 +1,15 @@
+<!--
+ * 文件描述:
+ * @author Lz on 2021-02-06
+ -->
 <template>
-  <div></div>
+  <div>
+    最底层的HOME1
+  </div>
 </template>
 <script>
 export default {
-  name: 'User',
+  name: 'Child1',
   components: {},
   data() {
     return {}

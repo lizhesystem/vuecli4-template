@@ -33,8 +33,8 @@ export const getStore = (params = {}) => {
     debug
   } = params
   name = keyName + name
-  let obj = {},
-    content
+  let obj = {};
+    let content
   obj = window.sessionStorage.getItem(name)
   if (validatenull(obj)) obj = window.localStorage.getItem(name)
   if (validatenull(obj)) return

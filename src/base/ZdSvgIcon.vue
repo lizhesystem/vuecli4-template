@@ -70,14 +70,14 @@
         // 否则就按比例处理
         if (height === 0 && width === 0) {
           return {
-            width: 1 * this.baseSize,
-            height: 1 * this.baseSize
+            width: Number(this.baseSize),
+            height: Number(this.baseSize)
           }
           // 指定了宽度，按宽度比例计算
         } else if (width !== null) {
           width = Number(width)
           if (isNaN(width) || width <= 0) {
-            width = 1 * this.baseSize
+            width = Number(this.baseSize)
           }
           return {
             width: width,
@@ -87,7 +87,7 @@
         } else {
           height = Number(height)
           if (isNaN(height) || height <= 0) {
-            height = 1 * this.baseSize
+            height = Number(this.baseSize)
           }
           return {
             width: height * this.scale,

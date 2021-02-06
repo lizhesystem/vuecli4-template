@@ -1,18 +1,25 @@
 <template>
   <div id="app">
-    <ZdTransitionSlide>
-      <router-view/>
-    </ZdTransitionSlide>
-    <!--全局返回顶部-->
-    <el-backtop style=" width: 55px; height: 55px;"/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    components: {}
-  }
+
+
+export default {
+  name: 'App',
+  components: {}
+}
 </script>
 
-<style lang="scss" src="./sass/common-m.scss"></style>
+<style>
+/*初始化样式*/
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+</style>

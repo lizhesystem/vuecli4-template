@@ -22,11 +22,11 @@
 <template>
   <div class="zd-card" :style="styleObj">
     <div class="zd-card__header">
-      <span class="zd-card__tip" v-if="beforeTitle"></span>
+      <span v-if="beforeTitle" class="zd-card__tip"></span>
       <div :class="['zd-card__title',fontSize ? 'zd-card__title--' + fontSize : '']">{{ headerTitle }}
       </div>
       <slot name="subtitle"></slot>
-      <span @click="getMore" class="zd_card__more" v-if="moreInfo">更多>></span>
+      <span v-if="moreInfo" class="zd_card__more" @click="getMore">更多>></span>
     </div>
     <div class="zd-card__body">
       <slot></slot>
@@ -35,48 +35,48 @@
 </template>
 
 <script>
-  export default {
-    name: 'ZdCard',
-    props: {
-      // 卡片宽度
-      styleObj: {
-        type: Object,
-        default: () => {
-        }
-      },
-      // 标题左侧装饰是否展示
-      beforeTitle: {
-        type: Boolean,
-        default: true
-      },
-      // 标题
-      headerTitle: {
-        type: String,
-        default: ''
-      },
-      // 更多跳转
-      moreInfo: {
-        type: Boolean,
-        default: true
-      },
-      // title字体大小
-      bold: {
-        type: Boolean,
-        default: false
+export default {
+  name: 'ZdCard',
+  components: {},
+  props: {
+    // 卡片宽度
+    styleObj: {
+      type: Object,
+      default: () => {
       }
     },
-    components: {},
-    computed: {
-      fontSize() {
-        return this.bold ? 'bold' : 'normal'
-      }
+    // 标题左侧装饰是否展示
+    beforeTitle: {
+      type: Boolean,
+      default: true
     },
-    methods: {
-      getMore() {
-        this.$emit('getMore')
-      }
+    // 标题
+    headerTitle: {
+      type: String,
+      default: ''
+    },
+    // 更多跳转
+    moreInfo: {
+      type: Boolean,
+      default: true
+    },
+    // title字体大小
+    bold: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    fontSize() {
+      return this.bold ? 'bold' : 'normal'
+    }
+  },
+  methods: {
+    getMore() {
+      this.$emit('getMore')
     }
   }
+}
 </script>
 
 <style lang="scss" src="../sass/components-theme/news-card.scss"></style>

@@ -26,12 +26,12 @@ export const ROUTER_DEFAULT_CONFIG = {
 // 默认路由
 export const DEFAULT_ROUTES = [
   {
-    // * 所有未匹配到的路由，重定向到home路由上
+    // * 所有未匹配到的路由，重定向
     path: '*',
     redirect: {
-      name: 'home'
+      name: '/'
     }
-  }
+  },
 ]
 
 // 全局页面跳转是否启用loading加载样式

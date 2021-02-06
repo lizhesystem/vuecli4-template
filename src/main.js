@@ -1,33 +1,34 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './plugins/router-instance'
-import index from 'Store/index'
-import i18n from './locales'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./plugins/router-instance";
+import store from "./store/store";
+import i18n from "./locales";
+import "./sass/common-m.scss";
 
 // * ----------------------------------------
 // * 导入插件
 // * ----------------------------------------
-import './plugins/component-register'
-import './plugins/base-component-register'
-import { vueInjecter } from '@/plugins/injecter'
-import { directiveRegister, filterRegister } from '@/plugins/register'
+import "./plugins/component-register";
+import "./plugins/base-component-register";
+import { vueInjecter } from "@/plugins/injecter";
+import { directiveRegister, filterRegister } from "@/plugins/register";
 
 // * ----------------------------------------
 // * 调用filters、directives注册器
 // * ----------------------------------------
-filterRegister()
-directiveRegister()
+filterRegister();
+directiveRegister();
 
 // * ----------------------------------------
 // * 调用全局注入器
 // * ----------------------------------------
-vueInjecter()
+vueInjecter();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
-  store: index,
+  store,
   i18n,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");

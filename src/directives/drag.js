@@ -14,16 +14,16 @@ export default {
       const disX = e.clientX - dialogHeaderEl.offsetLeft
       const disY = e.clientY - dialogHeaderEl.offsetTop
       // 获取到的值带px 正则匹配替换
-      let styL, styT
+      let styL; let styT
       // 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
       if (sty.left.includes('%')) {
         // eslint-disable-next-line no-useless-escape
-        styL = +document.body.clientWidth * (+sty.left.replace(/\%/g, '') / 100)
+        styL = Number(document.body.clientWidth) * (Number(sty.left.replace(/\%/g, '')) / 100)
         // eslint-disable-next-line no-useless-escape
-        styT = +document.body.clientHeight * (+sty.top.replace(/\%/g, '') / 100)
+        styT = Number(document.body.clientHeight) * (Number(sty.top.replace(/\%/g, '')) / 100)
       } else {
-        styL = +sty.left.replace(/\px/g, '')
-        styT = +sty.top.replace(/\px/g, '')
+        styL = Number(sty.left.replace(/\px/g, ''))
+        styT = Number(sty.top.replace(/\px/g, ''))
       }
       document.onmousemove = function (e) {
         // 通过事件委托，计算移动的距离
